@@ -3,6 +3,7 @@ import { corsOptions } from './middlewares/cors';
 import { errorHandler } from './middlewares/errorHandler';
 import { logger } from './utils/logger';
 import { configureCloudinary } from './config/cloudinary';
+import { connectDB } from './config/database';
 
 // Import routes
 import serviceRoutes from './routes/serviceRoutes';
@@ -10,6 +11,9 @@ import { ProductRoutes } from './routes/product.routes';
 
 export const createApp = (): Application => {
   const app = express();
+
+  // Connect to Database
+  connectDB();
 
   // Configure third-party services
   configureCloudinary();
@@ -57,3 +61,7 @@ export const createApp = (): Application => {
   logger.info('✓ Express app configured successfully');
   return app;
 };
+
+// Create app instance and export as default for Vercel
+const app = createApp();
+export default app;
