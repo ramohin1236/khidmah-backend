@@ -6,6 +6,7 @@ import { configureCloudinary } from './config/cloudinary';
 
 // Import routes
 import serviceRoutes from './routes/serviceRoutes';
+import { ProductRoutes } from './routes/product.routes';
 
 export const createApp = (): Application => {
   const app = express();
@@ -40,6 +41,7 @@ export const createApp = (): Application => {
 
   // API Routes
   app.use('/api/services', serviceRoutes);
+  app.use('/api/products', ProductRoutes);
 
   // 404 handler
   app.use((req: Request, res: Response) => {
