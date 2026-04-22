@@ -10,10 +10,11 @@ export const connectDB = async (): Promise<Connection> => {
 
   try {
     const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/khidmah';
-    
+    console.log(mongoURI);
+
     await mongoose.connect(mongoURI, { dbName: 'khidmah_ecommerce' });
     connection = mongoose.connection;
-    
+
     console.log('✓ MongoDB connected successfully');
     return connection;
   } catch (error) {
