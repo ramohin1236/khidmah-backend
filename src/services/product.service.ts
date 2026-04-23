@@ -65,4 +65,23 @@ export class ProductService {
       },
     };
   }
+
+  /**
+   * Update a product by ID
+   */
+  static async updateProduct(id: string, data: Partial<IProduct>) {
+    const product = await Product.findByIdAndUpdate(id, data, {
+      new: true, // Return the updated document
+      runValidators: true, // Run schema validators on update
+    });
+    return product;
+  }
+
+  /**
+   * Delete a product by ID
+   */
+  static async deleteProduct(id: string) {
+    const product = await Product.findByIdAndDelete(id);
+    return product;
+  }
 }

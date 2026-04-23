@@ -8,6 +8,8 @@ import { connectDB } from './config/database';
 // Import routes
 import serviceRoutes from './routes/serviceRoutes';
 import { ProductRoutes } from './routes/product.routes';
+import { CategoryRoutes } from './routes/category.routes';
+import { BrandRoutes } from './routes/brand.routes';
 
 export const createApp = (): Application => {
   const app = express();
@@ -46,6 +48,8 @@ export const createApp = (): Application => {
   // API Routes
   app.use('/api/services', serviceRoutes);
   app.use('/api/products', ProductRoutes);
+  app.use('/api/categories', CategoryRoutes);
+  app.use('/api/brands', BrandRoutes);
 
   // 404 handler
   app.use((req: Request, res: Response) => {

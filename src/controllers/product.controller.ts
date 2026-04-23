@@ -51,4 +51,62 @@ export class ProductController {
       });
     }
   }
+
+  /**
+   * Update a product
+   */
+  static async updateProduct(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const product = await ProductService.updateProduct(id as string, req.body);
+
+      if (!product) {
+        return res.status(404).json({
+          success: false,
+          message: 'Product not found',
+        });
+      }
+
+      res.status(200).json({
+        success: true,
+        message: 'Product updated successfully',
+        data: product,
+      });
+    } catch (error: any) {
+      res.status(400).json({
+        success: false,
+        message: 'Failed to update product',
+        error: error.message,
+      });
+    }
+  }
+
+  /**
+   * Delete a product
+   */
+  static async deleteProduct(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const product = await ProductService.deleteProduct(id as string);
+
+      if (!product) {
+        return res.status(404).json({
+          success: false,
+          message: 'Product not found',
+        });
+      }
+
+      res.status(200).json({
+        success: true,
+        message: 'Product deleted successfully',
+        data: product,
+      });
+    } catch (error: any) {
+      res.status(400).json({
+        success: false,
+        message: 'Failed to delete product',
+        error: error.message,
+      });
+    }
+  }
 }

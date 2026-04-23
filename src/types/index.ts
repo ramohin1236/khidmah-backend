@@ -50,6 +50,21 @@ export interface IProduct {
   updatedAt?: Date;
 }
 
+export interface ICategory {
+  _id?: string;
+  name: string;
+  image?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface IBrand {
+  _id?: string;
+  name: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
 export interface IQueryOptions {
   searchTerm?: string;
   category?: string;
