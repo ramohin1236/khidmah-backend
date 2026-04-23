@@ -1,11 +1,7 @@
 import cors from 'cors';
+import { env } from '../config/environment';
 
-const allowedOrigins = [
-  'http://localhost:3000',
-  'http://localhost:5173',
-  'https://khidmah-dashbord.vercel.app',
-  'https://printing-khidmah.vercel.app',
-];
+const allowedOrigins = env.CORS_ORIGIN.split(',');
 
 export const corsOptions = cors({
   origin: (origin, callback) => {
@@ -13,6 +9,7 @@ export const corsOptions = cors({
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
+      console.warn(`⚠ CORS Blocked: Origin ${origin} not in allowed list:`, allowedOrigins);
       callback(new Error('Not allowed by CORS'));
     }
   },
