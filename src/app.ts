@@ -1,3 +1,4 @@
+import './config/environment';
 import express, { Application, NextFunction, Request, Response } from 'express';
 import { corsOptions } from './middlewares/cors';
 import { errorHandler } from './middlewares/errorHandler';
@@ -9,12 +10,18 @@ import serviceRoutes from './routes/serviceRoutes';
 import { ProductRoutes } from './routes/product.routes';
 import { CategoryRoutes } from './routes/category.routes';
 import { BrandRoutes } from './routes/brand.routes';
+import { connectDB } from './config/database';
 
 export const createApp = (): Application => {
   const app = express();
 
   // Configure third-party services
   configureCloudinary();
+
+  // Connect to Database - Crucial for serverless environments like Vercel
+  connectDB().catch((err) => {
+    logger.error('✗ MongoDB connection failed during app initialization:', err);
+  });
 
   // Middlewares - Order matters for performance!
   app.use(corsOptions);

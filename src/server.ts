@@ -1,15 +1,11 @@
-import app from './app';
-import { connectDB } from './config/database';
 import { env, validateEnv } from './config/environment';
+import app from './app';
 import { logger } from './utils/logger';
 
 const startServer = async (): Promise<void> => {
   try {
     // Validate environment variables
     validateEnv();
-
-    // Connect to MongoDB
-    await connectDB();
 
     const PORT = env.PORT || 5000;
 
