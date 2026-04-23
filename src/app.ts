@@ -3,7 +3,6 @@ import { corsOptions } from './middlewares/cors';
 import { errorHandler } from './middlewares/errorHandler';
 import { logger } from './utils/logger';
 import { configureCloudinary } from './config/cloudinary';
-import { connectDB } from './config/database';
 
 // Import routes
 import serviceRoutes from './routes/serviceRoutes';
@@ -13,9 +12,6 @@ import { BrandRoutes } from './routes/brand.routes';
 
 export const createApp = (): Application => {
   const app = express();
-
-  // Connect to Database
-  connectDB();
 
   // Configure third-party services
   configureCloudinary();

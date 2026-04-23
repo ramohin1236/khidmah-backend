@@ -1,12 +1,16 @@
 import cors from 'cors';
-import { env } from '../config/environment';
 
-const allowedOrigins = (env.CORS_ORIGIN || '').split(',').map(origin => origin.trim());
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://localhost:5173',
+  'https://khidmah-dashbord.vercel.app',
+  'https://printing-khidmah.vercel.app',
+];
 
 export const corsOptions = cors({
   origin: (origin, callback) => {
     // Allow requests with no origin (like mobile apps or Postman)
-    if (!origin || allowedOrigins.includes(origin) || allowedOrigins.includes('*')) {
+    if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));

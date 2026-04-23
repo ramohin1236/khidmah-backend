@@ -13,7 +13,7 @@ export const env = {
   CLOUDINARY_API_SECRET: process.env.CLOUD_API_SECRET,
   
   // CORS
-  CORS_ORIGIN: process.env.CORS_ORIGIN || 'http://localhost:3000,https://khidmah-dashbord.vercel.app',
+  CORS_ORIGIN: process.env.CORS_ORIGIN || 'http://localhost:5173,http://localhost:3000,https://khidmah-dashbord.vercel.app',
 };
 
 export const validateEnv = (): void => {
