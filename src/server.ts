@@ -11,8 +11,8 @@ const startServer = async (): Promise<void> => {
 
     // Start server
     app.listen(PORT, () => {
-      logger.info(`🚀 Server is running on port ${PORT}`);
-      logger.info(`🔗 URL: http://localhost:${PORT}`);
+      logger.info(` Server is running on port ${PORT}`);
+      logger.info(` URL: http://localhost:${PORT}`);
     });
 
   } catch (error) {

@@ -10,6 +10,7 @@ import serviceRoutes from './routes/serviceRoutes';
 import { ProductRoutes } from './routes/product.routes';
 import { CategoryRoutes } from './routes/category.routes';
 import { BrandRoutes } from './routes/brand.routes';
+import { ClientRoutes } from './routes/client.routes';
 import { connectDB } from './config/database';
 
 export const createApp = (): Application => {
@@ -53,6 +54,7 @@ export const createApp = (): Application => {
   app.use('/api/products', ProductRoutes);
   app.use('/api/categories', CategoryRoutes);
   app.use('/api/brands', BrandRoutes);
+  app.use('/api/clients', ClientRoutes);
 
   // 404 handler
   app.use((req: Request, res: Response) => {

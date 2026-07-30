@@ -75,3 +75,10 @@ export interface IQueryOptions {
   sortBy?: string;
   sortOrder?: 'asc' | 'desc';
 }
+
+export interface IClient {
+  _id?: string;
+  logo: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
