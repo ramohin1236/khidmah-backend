@@ -53,6 +53,17 @@ export class ClientService {
   }
 
   /**
+   * Update a client by ID
+   */
+  static async updateClient(id: string, data: Partial<IClient>) {
+    const client = await Client.findByIdAndUpdate(id, data, {
+      new: true,
+      runValidators: true,
+    });
+    return client;
+  }
+
+  /**
    * Delete a client by ID
    */
   static async deleteClient(id: string) {
