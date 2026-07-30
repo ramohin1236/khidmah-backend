@@ -6,6 +6,7 @@ const router = Router();
 
 router.post('/add', upload.any(), ClientController.addClient);
 router.get('/', ClientController.getClients);
+router.patch('/update/:id', upload.any(), ClientController.updateClient);
 router.delete('/delete/:id', ClientController.deleteClient);
 
 export const ClientRoutes = router;

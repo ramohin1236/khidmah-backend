@@ -74,6 +74,56 @@ export class ClientController {
   }
 
   /**
+   * Update an existing client logo
+   */
+  static async updateClient(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      let logoUrl: string | undefined;
+
+      // 1. Check if files were uploaded (for upload.any() or upload.fields())
+      if (req.files && Array.isArray(req.files) && req.files.length > 0) {
+        logoUrl = req.files[0].path;
+      } 
+      // 2. Check if a single file was uploaded (for upload.single())
+      else if ((req as any).file) {
+        logoUrl = (req as any).file.path;
+      }
+
+      // 3. Fallback to check request body (e.g. JSON raw body with logo or image)
+      if (!logoUrl && req.body) {
+        logoUrl = req.body.logo || req.body.image;
+      }
+
+      const updateData: any = {};
+      if (logoUrl) {
+        updateData.logo = logoUrl;
+      }
+
+      const client = await ClientService.updateClient(id as string, updateData);
+
+      if (!client) {
+        return res.status(404).json({
+          success: false,
+          message: 'Client logo not found',
+        });
+      }
+
+      res.status(200).json({
+        success: true,
+        message: 'Client logo updated successfully',
+        data: client,
+      });
+    } catch (error: any) {
+      res.status(400).json({
+        success: false,
+        message: 'Failed to update client logo',
+        error: error.message,
+      });
+    }
+  }
+
+  /**
    * Delete a client logo
    */
   static async deleteClient(req: Request, res: Response) {
